@@ -1,0 +1,70 @@
+<front_screen>:
+
+    GridLayout:
+        cols:1
+        padding:200
+        Label:
+            text:'[i][color=#ff3333]Format[/color][/i] [color=#0000ff][b]Changer[/b][/color]'
+            font_size:'40sp'
+            markup:True
+        Button:
+            text:'To Select Images'
+            size_hint:(.2, .2)
+            on_press: root.next_screen(*args)
+
+<Text_Input>:
+
+    BoxLayout:
+        orientation:'vertical'
+        GridLayout:
+            cols:2
+            spacing:30
+            Label:
+                text:'[i][color=#ff3333]Enter The[/color][/i] [color=#0000ff][b]File Name[/b][/color]'
+                font_size:30
+                markup:True
+            TextInput:
+                id: Input
+                text:''
+                multiline: False
+                hint_text:'File Name'
+        Button:
+            text:'Submit'
+            on_release:root.next_screen(*args)
+
+        Button:
+            text:'Cancel'
+            on_press:root.prev_screen()
+
+<FILECHOOSER>:
+
+    BoxLayout:
+        orientation: 'vertical'
+        size: root.size
+
+        # creating icon view other side
+        FileChooserIconView:
+            multiselect: True
+            canvas.before:
+                Color:
+                    rgb: .5,.6,.7
+                Rectangle:
+                    size: self.size
+            on_selection: root.selected(*args)
+
+        Button:
+            text: 'Convert'
+            font_size: 30
+            size_hint: 1,.2
+            on_press:root.converter()
+            on_release:root.next_screen(*args)
+
+        Button:
+            text: 'Cancel'
+            font_size: 30
+            size_hint: 1,.2
+            on_press:root.prev_screen()
+
+
+
+
